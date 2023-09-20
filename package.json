@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "turbo dev"
+    "dev": "turbo dev",
+    "prepare": "husky install",
+    "test": "echo hola"
   },
   "repository": {
     "type": "git",
