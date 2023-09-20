@@ -1,0 +1,26 @@
+{
+  "name": "graphene",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "turbo dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sebastian009w/graphene.git"
+  },
+  "keywords": [
+    "graphql"
+  ],
+  "author": "sebastian009w",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sebastian009w/graphene/issues"
+  },
+  "workspaces":[
+    "apps/*",
+    "packages/*"
+  ],
+  "homepage": "https://github.com/sebastian009w/graphene#readme"
+}
