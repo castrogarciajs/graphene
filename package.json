@@ -13,16 +13,20 @@
     "url": "git+https://github.com/sebastian009w/graphene.git"
   },
   "keywords": [
-    "graphql"
+    "graphql",
+    "javascript"
   ],
   "author": "sebastian009w",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/sebastian009w/graphene/issues"
   },
-  "workspaces":[
-    "apps/*",
+  "workspaces": [
     "packages/*"
   ],
-  "homepage": "https://github.com/sebastian009w/graphene#readme"
+  "homepage": "https://github.com/sebastian009w/graphene#readme",
+  "devDependencies": {
+    "husky": "8.0.3",
+    "turbo": "1.10.14"
+  }
 }
