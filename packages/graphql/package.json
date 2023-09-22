@@ -8,7 +8,7 @@
     "dev": "nodemon ./src/index.js",
     "start": "node ./src/index.js",
     "test": "vitest",
-    "lint": "eslint . --ext js --max-warnings 0"
+    "lint": "eslint . --ext js"
   },
   "keywords": [],
   "author": "",

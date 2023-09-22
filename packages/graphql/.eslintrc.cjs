@@ -4,10 +4,5 @@ module.exports = {
   extends: ["eslint:recommended"],
   ignorePatterns: ["dist", ".eslintrc.cjs", "test"],
   parserOptions: { ecmaVersion: "latest", sourceType: "module" },
-  rules: {
-    "react-refresh/only-export-components": [
-      "warn",
-      { allowConstantExport: true },
-    ],
-  },
+  rules: {},
 };

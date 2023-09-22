@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import { UTIL } from "./lib.js";
+import process from 'node:process';
 
 export const conn = async () => {
   try {
