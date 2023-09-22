@@ -2,7 +2,7 @@
 FROM node:latest
 
 # Establece el directorio de trabajo dentro del contenedor
-WORKDIR /app
+WORKDIR /
 
 # Copia el archivo package.json y package-lock.json para instalar dependencias
 COPY package*.json ./
@@ -14,7 +14,7 @@ RUN npm install
 COPY . .
 
 # Expone el puerto en el que se ejecuta la aplicación
-EXPOSE 5000
+EXPOSE 4000
 
 # Comando para iniciar la aplicación
 CMD ["npm", "run", "dev"]
