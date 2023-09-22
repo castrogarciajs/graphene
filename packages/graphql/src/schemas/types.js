@@ -3,7 +3,20 @@ export const typeDefs = `#graphql
 
   # This "Book" type defines the queryable fields for every book in our data source.
 
-  type Query {
-    title: String
+  type Task {
+    id: ID
+    name: String!
+    description: String
+    createdAt: String
+    updatedAt: String
   }
-`
+
+  type Query {
+    task: Task
+  }
+
+
+  type Mutation {
+    create(name: String!, description: String): Task
+  }
+`;

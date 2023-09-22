@@ -4,7 +4,7 @@ import { expressMiddleware } from "@apollo/server/express4";
 import cors from "cors";
 import http from "node:http";
 
-async function start(typeDefs, resolvers) {
+export default async function run(typeDefs, resolvers) {
   const app = express();
 
   const server = http.createServer(app);
@@ -20,5 +20,3 @@ async function start(typeDefs, resolvers) {
 
   console.log("Server on port: http://localhost:4000");
 }
-
-export default start;

@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "turbo dev",
     "prepare": "husky install",
-    "test": "echo hola",
+    "test": "turbo test",
     "clean": "turbo daemon clean"
   },
   "repository": {
