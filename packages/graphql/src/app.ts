@@ -21,14 +21,15 @@ export default class Application {
       typeDefs,
       resolvers,
     });
+    
     await apollo.start();
 
-    this.app.use("/", cors(), express.json(), expressMiddleware(apollo));
+    this.app.use("/graphql", cors(), express.json(), expressMiddleware(apollo));
 
     await new Promise<void>((resolve) =>
       this.server.listen({ port: 4000 }, resolve)
     );
 
-    console.log(`🚀 Server ready at http://localhost:4000/`);
+    console.log(`🚀 Server ready at http://localhost:4000/graphql`);
   }
 }
