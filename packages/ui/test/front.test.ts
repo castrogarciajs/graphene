@@ -1,3 +1,3 @@
 test("should return true", () => {
-    expect()
+    expect(true)
 })
