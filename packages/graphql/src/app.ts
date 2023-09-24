@@ -3,8 +3,10 @@ import { ApolloServer } from "@apollo/server";
 import { expressMiddleware } from "@apollo/server/express4";
 import cors from "cors";
 import http from "node:http";
+import { typeDefs } from "./schemas/types";
+import { resolvers } from "./schemas/resolvers";
 
-export default async function run(typeDefs, resolvers) {
+export default async function run() {
   const app = express();
 
   const server = http.createServer(app);
@@ -14,9 +16,9 @@ export default async function run(typeDefs, resolvers) {
   });
 
   await apollo.start();
-  app.use("/graphql", cors(), express.json(), expressMiddleware(apollo));
+  app.use("/", cors(), express.json(), expressMiddleware(apollo));
 
-  await new Promise((resolve) => server.listen({ port: 4000 }, resolve));
+  await new Promise<void>((resolve) => server.listen({ port: 4000 }, resolve));
 
-  console.log("Server on port: http://localhost:4000");
+  console.log(`🚀 Server ready at http://localhost:4000/`);
 }

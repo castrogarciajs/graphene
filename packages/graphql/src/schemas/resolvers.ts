@@ -1,9 +1,11 @@
-import Task from "../collections/Task.js";
+import Task from "../collections/Task";
+
+type TaskSchema = { name: string; description?: string };
 
 export const resolvers = {
   Query: {},
   Mutation: {
-    async create(_, args) {
+    async create(_: any, args: TaskSchema) {
       const { name, description } = args;
 
       const instances = new Task({ name, description });
