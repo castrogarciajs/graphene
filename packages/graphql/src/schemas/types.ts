@@ -12,9 +12,8 @@ export const typeDefs = `#graphql
   }
 
   type Query {
-    task: Task
+    tasks: [Task]
   }
-
 
   type Mutation {
     create(name: String!, description: String): Task

@@ -3,7 +3,13 @@ import Task from "../collections/Task";
 type TaskSchema = { name: string; description?: string };
 
 export const resolvers = {
-  Query: {},
+  Query: {
+    async tasks() {
+      const tasks = await Task.find();
+
+      return tasks;
+    },
+  },
   Mutation: {
     async create(_: unknown, args: TaskSchema) {
       const { name, description } = args;
