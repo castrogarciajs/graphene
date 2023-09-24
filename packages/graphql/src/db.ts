@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
-import { UTIL } from "./lib.js";
-import process from 'node:process';
+import { UTIL } from "./const";
+import process from "node:process";
 
 export const conn = async () => {
   try {
@@ -8,7 +8,10 @@ export const conn = async () => {
 
     console.log("Mongodb connected: ", db.connection.name);
   } catch (error) {
-    console.error("Error: ", error.message);
+    if (error instanceof Error) {
+      console.error("Error: ", error.message);
+    }
+
     process.exit(1);
   }
 };
