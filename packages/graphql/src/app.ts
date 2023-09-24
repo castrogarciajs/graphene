@@ -6,19 +6,29 @@ import http from "node:http";
 import { typeDefs } from "./schemas/types";
 import { resolvers } from "./schemas/resolvers";
 
-export default async function run() {
-  const app = express();
+export default class Application {
+  private app: express.Express;
+  private server: http.Server;
 
-  const server = http.createServer(app);
-  const apollo = new ApolloServer({
-    typeDefs,
-    resolvers,
-  });
+  constructor() {
+    this.app = express();
+    this.server = http.createServer(this.app);
+  }
 
-  await apollo.start();
-  app.use("/", cors(), express.json(), expressMiddleware(apollo));
+  /**execute core application */
+  async run() {
+    const apollo = new ApolloServer({
+      typeDefs,
+      resolvers,
+    });
+    await apollo.start();
 
-  await new Promise<void>((resolve) => server.listen({ port: 4000 }, resolve));
+    this.app.use("/", cors(), express.json(), expressMiddleware(apollo));
 
-  console.log(`🚀 Server ready at http://localhost:4000/`);
+    await new Promise<void>((resolve) =>
+      this.server.listen({ port: 4000 }, resolve)
+    );
+
+    console.log(`🚀 Server ready at http://localhost:4000/`);
+  }
 }
