@@ -5,17 +5,27 @@ export const typeDefs = `#graphql
 
   type Task {
     id: ID
-    name: String!
+    title: String!
     description: String
+    createdAt: String
+    updatedAt: String
+  }
+
+  type User {
+    id: ID
+    name: String!
+    task_id: ID
     createdAt: String
     updatedAt: String
   }
 
   type Query {
     tasks: [Task]
+    users: [User]
   }
 
   type Mutation {
-    create(name: String!, description: String): Task
+    create_task(title: String!, description: String): Task
+    create_user(name: String!, task_id: ID): User
   }
 `;
