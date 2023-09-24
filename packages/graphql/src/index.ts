@@ -1,5 +1,9 @@
-import run from "./app";
-import { conn } from "./db";
+import Application from "./app";
+import Database from "./db";
+import { UTIL } from "./const";
 
-conn();
-run();
+const app = new Application();
+const db = new Database(UTIL.__MONGODB_URI__);
+
+db.conn();
+app.run();

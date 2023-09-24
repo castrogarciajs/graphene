@@ -1,17 +1,21 @@
 import mongoose from "mongoose";
-import { UTIL } from "./const";
 import process from "node:process";
 
-export const conn = async () => {
-  try {
-    const db = await mongoose.connect(UTIL.__MONGODB_URI__);
+export default class Database {
+  /**URL of the database */
+  constructor(private db: string) {}
 
-    console.log("Mongodb connected: ", db.connection.name);
-  } catch (error) {
-    if (error instanceof Error) {
-      console.error("Error: ", error.message);
+  /**execute connection to mongodb */
+  async conn() {
+    try {
+      const database = await mongoose.connect(this.db);
+
+      console.log(`🚀 Connection ready at ${database.connection.name}`);
+    } catch (error) {
+      if (error instanceof Error) {
+        console.error("❌ Error connection: ", error.message);
+      }
+      process.exit(1);
     }
-
-    process.exit(1);
   }
-};
+}
