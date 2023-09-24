@@ -1,5 +1,12 @@
-describe("Connect to mongoDB", () => {
-  it("should return conn succesfully", async () => {
-   expect(true)
-  });
+import { vi } from "vitest";
+
+const messageDB = "connected succesfuly";
+
+const mockMongoose = {
+  connect: vi.fn().mockReturnValue(messageDB),
+  disconnect: vi.fn(),
+};
+
+test("should return connected", () => {
+  console.log(mockMongoose.connect);
 });
