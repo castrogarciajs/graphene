@@ -7,6 +7,7 @@ export const typeDefs = `#graphql
     id: ID
     title: String!
     description: String
+    users: [User]
     createdAt: String
     updatedAt: String
   }
