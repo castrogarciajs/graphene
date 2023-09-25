@@ -2,12 +2,12 @@ import Task from "../collections/task";
 import User from "../collections/user";
 
 type TaskSchema = {
-  id: string | number;
+  _id: string | number;
   title: string;
-  description?: string;
+  user_id: string | number;
 };
 type UserSchema = {
-  id: string | number;
+  _id: string | number;
   name: string;
   task_id: string;
 };
@@ -26,16 +26,16 @@ export const resolvers = {
       return users;
     },
 
-    /**Found by id */
+    /**Found by _id */
 
     async task(_: unknown, args: TaskSchema) {
-      const task = await Task.findById(args.id);
+      const task = await Task.findById(args._id);
 
       return task;
     },
 
     async user(_: unknown, args: UserSchema) {
-      const user = await User.findById(args.id);
+      const user = await User.findById(args._id);
 
       return user;
     },
@@ -44,16 +44,16 @@ export const resolvers = {
   Mutation: {
     /**------------------------ TASK ---------------------- */
     async create_task(_: unknown, args: TaskSchema) {
-      const { title, description } = args;
+      const { title, user_id } = args;
 
-      const instances = new Task({ title, description });
+      const instances = new Task({ title, user_id });
       const task = await instances.save();
 
       return task;
     },
 
-    delete_task(_: unknown, args: TaskSchema) {
-      const deleted = Task.findByIdAndDelete(args.id);
+    async delete_task(_: unknown, args: TaskSchema) {
+      const deleted = await Task.findByIdAndDelete(args._id);
 
       if (!deleted) throw new Error("Task not found");
 
@@ -61,7 +61,7 @@ export const resolvers = {
     },
 
     async update_task(_: unknown, args: TaskSchema) {
-      const updated = await Task.findByIdAndUpdate(args.id, args, {
+      const updated = await Task.findByIdAndUpdate(args._id, args, {
         new: true,
       });
 
@@ -86,16 +86,17 @@ export const resolvers = {
       return user;
     },
 
-    delete_user(_: unknown, args: UserSchema) {
-      const deleted = User.findByIdAndDelete(args.id);
+    async delete_user(_: unknown, args: UserSchema) {
+      const deleted = await User.findByIdAndDelete(args._id);
 
       if (!deleted) throw new Error("User not found");
 
+      console.log(deleted);
       return deleted;
     },
 
     async update_user(_: unknown, args: UserSchema) {
-      const updated = await User.findByIdAndUpdate(args.id, args, {
+      const updated = await User.findByIdAndUpdate(args._id, args, {
         new: true,
       });
       if (!updated) throw new Error("User not found");
@@ -104,11 +105,19 @@ export const resolvers = {
     },
   },
 
-  Task: {
-    async users(task: TaskSchema) {
-      const tasks = await User.find({ task_id: task.id });
+  User: {
+    async tasks(root: UserSchema) {
+      const tasks = Task.find({ user_id: root._id });
 
       return tasks;
+    },
+  },
+
+  Task: {
+    async user(root: UserSchema) {
+      const user = await User.findById(root._id);
+
+      return user;
     },
   },
 };

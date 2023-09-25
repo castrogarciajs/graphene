@@ -4,18 +4,18 @@ export const typeDefs = `#graphql
   # This "Book" type defines the queryable fields for every book in our data source.
 
   type Task {
-    id: ID
+    _id: ID
     title: String!
     description: String
-    users: [User]
+    user: User
     createdAt: String
     updatedAt: String
   }
 
   type User {
-    id: ID
+    _id: ID
     name: String!
-    task_id: ID
+    tasks: [Task]
     createdAt: String
     updatedAt: String
   }
@@ -23,17 +23,17 @@ export const typeDefs = `#graphql
   type Query {
     tasks: [Task]
     users: [User]
-    task(id: ID!): Task
-    user(id: ID!): User
+    task(_id: ID!): Task
+    user(_id: ID!): User
   }
 
   type Mutation {
-    create_task(title: String!, description: String): Task
-    delete_task(id: ID!): Task
-    update_task(id: ID! title: String! description: String): Task
+    create_task(title: String!, user_id: ID!): Task
+    delete_task(_id: ID!): Task
+    update_task(_id: ID! title: String! description: String): Task
 
-    create_user(name: String!, task_id: ID): User
-    delete_user(id: ID!): User
-    update_user(id: ID! name: String! task_id: ID!): User
+    create_user(name: String!, task__id: ID): User
+    delete_user(_id: ID!): User
+    update_user(_id: ID! name: String! task__id: ID!): User
   }
 `;
