@@ -40,6 +40,7 @@ export const resolvers = {
       return user;
     },
   },
+
   Mutation: {
     /**------------------------ TASK ---------------------- */
     async create_task(_: unknown, args: TaskSchema) {
@@ -89,7 +90,7 @@ export const resolvers = {
       const deleted = User.findByIdAndDelete(args.id);
 
       if (!deleted) throw new Error("User not found");
-      
+
       return deleted;
     },
 
@@ -100,6 +101,14 @@ export const resolvers = {
       if (!updated) throw new Error("User not found");
 
       return updated;
+    },
+  },
+
+  Task: {
+    async users(task: TaskSchema) {
+      const tasks = await User.find({ task_id: task.id });
+
+      return tasks;
     },
   },
 };
