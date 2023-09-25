@@ -2,13 +2,22 @@ version: '3.9'
 
 
 services:
-  graphene:
+  ui:
+    container_name: ui
     build: 
       context: .
+      dockerfile: ./packages/ui/Dockerfile
     ports:
-      - "4000:4000"
-
+      - 3000:3000
+  graphql:
+    container_name: graphql
+    build: 
+      context: .
+      dockerfile: ./packages/graphql/Dockerfile
+    ports:
+      - 3001:3001
   mongo:
+    container_name: db
     image: mongo
     ports:
-      - "27017:27017"
+      - 27018:27017
