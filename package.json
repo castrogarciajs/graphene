@@ -1,32 +1,27 @@
 {
   "name": "graphene",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "monorepo for graphene and friends",
+  "private": true,
   "scripts": {
-    "dev": "turbo dev",
-    "prepare": "husky install",
     "test": "turbo test",
-    "clean": "turbo daemon clean",
-    "lint": "turbo lint"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/sebastian009w/graphene.git"
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "lint": "turbo lint",
+    "clean": "turbo daemon clean"
   },
   "keywords": [
-    "graphql",
-    "javascript"
+    "typescript",
+    "docker",
+    "graphql"
   ],
-  "author": "sebastian009w",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/sebastian009w/graphene/issues"
+  "author": "castrogarciajs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/castrogarciajs/graphene"
   },
-  "workspaces": [
-    "packages/*"
-  ],
-  "homepage": "https://github.com/sebastian009w/graphene#readme",
+  "license": "MIT",
+  "packageManager": "pnpm@8.7.5",
   "devDependencies": {
     "husky": "8.0.3",
     "turbo": "1.10.14"
