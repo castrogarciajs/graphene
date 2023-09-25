@@ -1,8 +1,16 @@
 import Task from "../collections/task";
 import User from "../collections/user";
 
-type TaskSchema = { title: string; description?: string };
-type UserSchema = { name: string; task_id: string };
+type TaskSchema = {
+  id: string | number;
+  title: string;
+  description?: string;
+};
+type UserSchema = {
+  id: string | number;
+  name: string;
+  task_id: string;
+};
 
 export const resolvers = {
   Query: {
@@ -17,6 +25,22 @@ export const resolvers = {
 
       return users;
     },
+
+    /**Found by id */
+
+    async task(_: unknown, args: TaskSchema) {
+      const { id } = args;
+      const task = await Task.findById(id);
+
+      return task;
+    },
+
+    async user(_: unknown, args: UserSchema) {
+      const { id } = args;
+      const user = await User.findById(id);
+
+      return user;
+    },
   },
   Mutation: {
     async create_task(_: unknown, args: TaskSchema) {
@@ -25,6 +49,15 @@ export const resolvers = {
       const task = await instances.save();
 
       return task;
+    },
+
+    delete_task(_: unknown, args: TaskSchema) {
+      const { id } = args;
+      const deleted = Task.findByIdAndDelete(id);
+
+      if (!deleted) throw new Error("Task not found");
+
+      return deleted;
     },
 
     async create_user(_: unknown, args: UserSchema) {
@@ -40,6 +73,15 @@ export const resolvers = {
       const user = await instances.save();
 
       return user;
+    },
+
+    delete_user(_: unknown, args: UserSchema) {
+      const { id } = args;
+      const deleted = User.findByIdAndDelete(id);
+
+      if (!deleted) throw new Error("User not found");
+
+      return deleted;
     },
   },
 };
