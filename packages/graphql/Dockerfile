@@ -1,37 +1,18 @@
-FROM node:18-alpine AS base
+FROM node:latest
 
+RUN mkdir -p /usr/src/graphql
+WORKDIR /usr/src/graphql/dist
 
-FROM base AS builder
+# Install app dependencies from package.json. If modules are not included in the package.json file enter a RUN command. E.g. RUN npm install <module-name>
 
-RUN apk add --no-cache libc6-compat
-RUN apk update
+COPY package.json /usr/src/graphql/
 
-
-WORKDIR /app
-
-
-RUN npm install -g turbo
-COPY . .
-
-RUN turbo prune --scope=graphql --docker
-
-# Add lockfile and package.json's of isolated subworkspace
-FROM base AS installer
-RUN apk add --no-cache libc6-compat
-RUN apk update
-WORKDIR /app
-
-COPY .gitignore .gitignore
-COPY --from=builder /app/out/json/ .
-COPY --from=builder /app/out/package.json ./package.json
 RUN npm install
+RUN npm install typescript -g
+RUN tsc
 
-COPY --from=builder /app/out/full/ .
-COPY turbo.json turbo.json
 
-RUN npx turbo run build --filter=graphql
+COPY . /usr/src/graphql/
 
-FROM base AS runner
-WORKDIR /app
+CMD [ "node", "./dist/index.js" ]
 
-CMD node packages/graphql/dist/index.js
