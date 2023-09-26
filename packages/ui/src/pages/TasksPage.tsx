@@ -1,3 +1,18 @@
+import { useQuery } from "@apollo/client";
+import { GET_TASKS } from "../graphql/tasks";
+
 export default function TasksPage() {
-    return <h2>Task Pages</h2>
+  const { loading, error, data } = useQuery(GET_TASKS);
+  console.log(data);
+  return (
+    <section>
+      {loading ? (
+        <h2>Loading</h2>
+      ) : error ? (
+        <h2>{error.message}</h2>
+      ) : (
+        <article></article>
+      )}
+    </section>
+  );
 }
