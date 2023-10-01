@@ -1,3 +1,3 @@
 export const UTIL = {
-  __MONGODB_URI__: "mongodb://localhost/graphql",
+  __MONGODB_URI__: 'mongodb://localhost/graphql',
 };

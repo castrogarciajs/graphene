@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const TaskSchema = new mongoose.Schema(
   {
@@ -8,11 +8,11 @@ const TaskSchema = new mongoose.Schema(
     },
     user_id: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      ref: 'User',
       required: true,
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
-export default mongoose.model("Task", TaskSchema);
+export default mongoose.model('Task', TaskSchema);

@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-import process from "node:process";
+import mongoose from 'mongoose';
+import process from 'node:process';
 
 export default class Database {
   /**URL of the database */
@@ -10,12 +10,12 @@ export default class Database {
     try {
       const database = await mongoose.connect(this.db);
 
-      console.log( `🚀 Connection ready at ${database.connection.name}`);
+      console.log(`🚀 Connection ready at ${database.connection.name}`);
 
-      return database
+      return database;
     } catch (error) {
       if (error instanceof Error) {
-        console.error("❌ Error connection: ", error.message);
+        console.error('❌ Error connection: ', error.message);
       }
       process.exit(1);
     }

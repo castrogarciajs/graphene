@@ -1,5 +1,5 @@
-import Task from "../collections/task";
-import User from "../collections/user";
+import Task from '../collections/task';
+import User from '../collections/user';
 
 type TaskSchema = {
   _id: string | number;
@@ -55,7 +55,7 @@ export const resolvers = {
     async delete_task(_: unknown, args: TaskSchema) {
       const deleted = await Task.findByIdAndDelete(args._id);
 
-      if (!deleted) throw new Error("Task not found");
+      if (!deleted) throw new Error('Task not found');
 
       return deleted;
     },
@@ -65,7 +65,7 @@ export const resolvers = {
         new: true,
       });
 
-      if (!updated) throw new Error("Task not found");
+      if (!updated) throw new Error('Task not found');
 
       return updated;
     },
@@ -77,7 +77,7 @@ export const resolvers = {
 
       if (!found)
         throw new Error(
-          "Task no found. The task you are trying to search for does not exist"
+          'Task no found. The task you are trying to search for does not exist',
         );
 
       const instances = new User({ name, task_id });
@@ -89,7 +89,7 @@ export const resolvers = {
     async delete_user(_: unknown, args: UserSchema) {
       const deleted = await User.findByIdAndDelete(args._id);
 
-      if (!deleted) throw new Error("User not found");
+      if (!deleted) throw new Error('User not found');
 
       console.log(deleted);
       return deleted;
@@ -99,7 +99,7 @@ export const resolvers = {
       const updated = await User.findByIdAndUpdate(args._id, args, {
         new: true,
       });
-      if (!updated) throw new Error("User not found");
+      if (!updated) throw new Error('User not found');
 
       return updated;
     },

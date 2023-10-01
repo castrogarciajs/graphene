@@ -1,6 +1,6 @@
-import Application from "./app";
-import Database from "./db";
-import { UTIL } from "./const";
+import Application from './app';
+import Database from './db';
+import { UTIL } from './const';
 
 const app = new Application();
 const db = new Database(UTIL.__MONGODB_URI__);

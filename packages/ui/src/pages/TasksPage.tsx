@@ -1,9 +1,14 @@
-import { useQuery } from "@apollo/client";
-import { GET_TASKS } from "../graphql/tasks";
+import { useQuery } from '@apollo/client';
+import { GET_TASKS } from '../graphql/tasks';
+
+type TTask = { title: string, _id: string };
 
 export default function TasksPage() {
   const { loading, error, data } = useQuery(GET_TASKS);
-  console.log(data);
+
+  if (!data) return null;
+  const tasks: TTask[] = data.tasks;
+  
   return (
     <section>
       {loading ? (
@@ -11,7 +16,15 @@ export default function TasksPage() {
       ) : error ? (
         <h2>{error.message}</h2>
       ) : (
-        <article></article>
+        <article>
+          {tasks.map((task) => (
+            <div key={task._id}>
+              <h2>
+              {task.title}
+                </h2>
+              </div>
+          ))}
+        </article>
       )}
     </section>
   );
