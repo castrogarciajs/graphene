@@ -13,8 +13,8 @@ export default function App() {
     <ApolloProvider client={client}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/tasks" element={<TasksPage />} />
+          <Route path='/' element={<HomePage />} />
+          <Route path='/tasks' element={<TasksPage />} />
         </Routes>
       </BrowserRouter>
     </ApolloProvider>
