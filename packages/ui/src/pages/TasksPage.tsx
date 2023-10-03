@@ -1,9 +1,9 @@
-import { useQuery } from "@apollo/client";
-import { GET_TASKS } from "../graphql/tasks";
+import { useQuery } from '@apollo/client'
+import { GET_TASKS } from '../graphql/tasks'
 
 export default function TasksPage() {
-  const { loading, error, data } = useQuery(GET_TASKS);
-  console.log(data);
+  const { loading, error, data } = useQuery(GET_TASKS)
+  console.log(data)
   return (
     <section>
       {loading ? (
@@ -14,5 +14,5 @@ export default function TasksPage() {
         <article></article>
       )}
     </section>
-  );
+  )
 }

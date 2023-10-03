@@ -6,10 +6,11 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:react-hooks/recommended"
   ],
-  "ignorePatterns": ["dist", ".eslintrc.json"],
+  "ignorePatterns": ["dist", ".eslintrc.json", "node_modules"],
   "parser": "@typescript-eslint/parser",
   "plugins": ["react-refresh"],
   "rules": {
+    "semi": "never",
     "react-refresh/only-export-components": [
       "warn",
       { "allowConstantExport": true }

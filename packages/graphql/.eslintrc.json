@@ -1,9 +1,11 @@
 /**eslint-env node */
 {
   "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
-  "ignorePatterns": ["dist", ".eslintrc.json"],
+  "ignorePatterns": ["dist", ".eslintrc.json", "node_modules"],
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint"],
   "root": true,
-  "rules": {}
+  "rules": {
+    "semi": "never"
+  }
 }
