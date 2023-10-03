@@ -36,4 +36,4 @@ export const typeDefs = `#graphql
     delete_user(_id: ID!): User
     update_user(_id: ID! name: String! task_id: ID!): User
   }
-`;
+`

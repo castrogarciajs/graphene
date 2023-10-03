@@ -7,8 +7,9 @@
     "build": "tsc",
     "start": "npm run build && node ./dist/index.js",
     "test": "vitest",
-    "lint": "eslint . --ext ts",
-    "dev": "nodemon ./src/index.ts --exec ts-node"
+    "lint": "eslint . --ext ts --cache --fix",
+    "dev": "nodemon ./src/index.ts --exec ts-node",
+    "format": "prettier . --cache --write"
   },
   "keywords": [
     "typescript",

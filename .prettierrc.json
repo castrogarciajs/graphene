@@ -1,0 +1,14 @@
+{
+    "$schema": "https://json.schemastore.org/prettierrc",
+    "singleQuote": true,
+    "tabWidth": 2,
+    "semi": false,
+    "overrides": [
+        {
+            "files":["*.ts", "*.tsx"],
+            "options": {
+                "jsxSingleQuote": true
+            }
+        }
+    ]
+}
