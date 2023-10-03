@@ -6,6 +6,6 @@
   "plugins": ["@typescript-eslint"],
   "root": true,
   "rules": {
-    "semi": "never"
+    "semi": ["error", "never"]
   }
 }
