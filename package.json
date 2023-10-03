@@ -10,6 +10,7 @@
     "lint": "turbo lint",
     "clean": "turbo daemon clean",
     "format": "pnpm -r format",
+    "format:checked": "pnpm -r format:checked",
     "prepare": "husky install"
   },
   "keywords": [

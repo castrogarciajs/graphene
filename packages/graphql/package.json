@@ -9,7 +9,8 @@
     "test": "vitest",
     "lint": "eslint . --ext ts --cache --fix",
     "dev": "nodemon ./src/index.ts --exec ts-node",
-    "format": "prettier . --cache --write"
+    "format": "prettier . --cache --write",
+    "format:checked": "prettier . --check --cache"
   },
   "keywords": [
     "typescript",
